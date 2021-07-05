@@ -1,0 +1,71 @@
+{
+    "sources": {
+        "Испания": "https://www.championat.com/football/_spain/tournament/4019/calendar/",
+        "Италия": "https://www.championat.com/football/_italy/tournament/4021/calendar/",
+        "Германия": "https://www.championat.com/football/_germany/tournament/4017/calendar/",
+        "Англия": "https://www.championat.com/football/_england/tournament/4013/calendar/"
+    },
+    "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+    },
+    "url_champ_page": {
+        "urls_page": {
+            "tag": "div",
+            "class": "tournament-tabs__content"
+        },
+        "divs_with_stats_results": {
+            "tag": "td",
+            "class": "stat-results__link"
+        }
+    },
+    "stat": {
+        "status_dom": {
+            "tag": "div",
+            "class": "match-info__status"
+        },
+        "date_dom": {
+            "tag": "div",
+            "class": "match-info__title"
+        },
+        "teams_dom": {
+            "tag": "div",
+            "class": "match-info__team-name"
+        },
+        "link_team_dom": {
+            "tag": "a",
+            "class": "match-info__team-link"
+        },
+        "score_dom": {
+            "tag": "div",
+            "class": "match-info__score-total"
+        },
+        "stat_graph": {
+            "tag": "div",
+            "class": "stat-graph"
+        }
+    },
+    "team_page": {
+        "teams": {
+            "tag": "a",
+            "class": "table-item"
+        },
+        "tournament_tabs": {
+            "tag": "div",
+            "class": "tournament-tabs__content"
+        }
+    },
+    "href_about": {
+        "href_team_div": {
+            "tag": "div",
+            "class": "entity-header__title-link"
+        },
+        "header_image": {
+            "tag": "div",
+            "class": "entity-header__img"
+        },
+        "header_facts": {
+            "tag": "ul",
+            "class": "entity-header__facts"
+        }
+    }
+}

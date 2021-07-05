@@ -1,0 +1,100 @@
+{% load static %}
+{% load sitetree %}
+<!DOCTYPE html>
+    <html lang="{{ LANGUAGE_CODE|default:"ru-RU" }}">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-tabs-x.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/kv-widgets.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/owl.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %} ">
+        <link rel="stylesheet" href="{% static 'fonts/font-awesome-4.1.0/css/font-awesome.min.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/et-icons.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/bazi.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel_new.min.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/dropdown-x.css' %} ">
+        <style>@media print{.tab-content.printable > .tab-pane{display:block;opacity:1;}}</style>
+        <script type="text/javascript" src={% static 'js/jquery-1.11.1.min.js' %}></script>
+        <script type="text/javascript" src={% static 'js/wow.min.js' %}></script>
+        <script type="text/javascript" src={% static 'js/typewriter.js' %}></script>
+        <script type="text/javascript" src={% static 'js/jquery.onepagenav.js' %}></script>
+        <script type="text/javascript" src={% static 'js/main.js' %}></script>
+        <script type="text/javascript" src={% static 'js/owl.carousel.js' %}></script>
+        <script type="text/javascript" src={% static 'js/owl.carousel.min.js' %}></script>
+        <script>window.tabsX_00000000 = {};</script>
+        <title></title>
+    </head>
+
+    <body>
+    <div class="preloader">
+        <img src="{% static 'img/loader.gif' %}" alt="Preloader image">
+    </div>
+
+    {% sitetree_menu from "mainmenu" include "trunk,topmenu" %}
+    <header id="intro">
+        <div class="container">
+            <div class="table">
+                <div class="header-text">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3 class="light white">Football is a game about feelings and intelligence.</h3>
+                            <h1 class="white typed">FootballStat! Stat about football</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{#    {% include 'main_page/main_content.html' with league_data=league_data %}#}
+    {% block main_content %}{% endblock %}
+    <div class="page-buffer"></div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 text-center-mobile">
+                    <h3 class="white">Footballstat</h3>
+                    <h5 class="light regular light-white">Футбольная Статистика лучших европейских чемпионатов</h5>
+                </div>
+            </div>
+            <div class="row bottom-footer text-center-mobile">
+                <div class="col-sm-8">
+                    <p>&copy; 2016 All Rights Reserved. Powered by</p>
+                </div>
+                <div class="col-sm-4 text-right text-center-mobile">
+                </div>
+            </div>
+        </div>
+    </footer>
+{#        <script type="text/javascript" src={% static 'js/jquery.js' %}></script>#}
+        <script type="text/javascript" src={% static 'js/yii.js' %}></script>
+        <script type="text/javascript" src={% static 'js/bootstrap.js' %}></script>
+        <script type="text/javascript" src={% static 'js/bootstrap-tabs-x.js' %}></script>
+        <script type="text/javascript" src={% static 'js/kv-widgets.js' %}></script>
+        <script type="text/javascript" src={% static 'js/dropdown-x.js' %}></script>
+{#        <script type="text/javascript" src={% static 'js/main.js' %}></script>#}
+{#        <script type="text/javascript" src={% static 'js/owl.carousel.js' %}></script>#}
+{#        <script type="text/javascript" src={% static 'js/owl.carousel.min.js' %}></script>#}
+    <script>
+        $('[data-toggle="tabajax"]').click(function(e) {
+            var $this = $(this),
+                loadurl = $this.attr('href'),
+                targ = $this.attr('data-target');
+
+            $.get(loadurl, function(data) {
+                $(targ).html(data);
+            });
+
+            $this.tab('show');
+            return false;
+        });
+    </script>
+    </body>
+
+</html>

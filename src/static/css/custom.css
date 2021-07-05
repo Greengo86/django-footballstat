@@ -1,0 +1,727 @@
+/* Панель навигации*/
+.navbar-header .black {
+    color: #000;
+    margin-top: 2px;
+}
+
+/* Стиль отображения фоновой картинки хедера*/
+header {
+    background: rgba(0, 0, 0, 0) url("../img/header.jpg") no-repeat;
+    background-size: cover;
+    min-height: 780px;
+}
+
+/* Крутящийся мячик слева от меню */
+.fa-2x {
+    font-size: 2.2em;
+}
+
+.navbar .menu-widget {
+    color: black;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: inherit;
+}
+
+.nav-pos {
+    float: right;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: inherit;
+}
+
+.navbar-nav > li > a {
+    color: black;
+}
+
+/*Эмблемы в меню навигации*/
+ul.dropdown-menu > li > a > img {
+    height: 20px;
+    width: 20px;
+}
+
+/*Цвет кнопки меню при нажатии */
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #b22c29;
+}
+
+/*Цвет ссылки в подменю - dropdown */
+nav.navbar .navbar-nav li.active a:not(.btn) {
+    color: black;
+}
+
+/*Цвет navbar у лейаута отличного от главной страницы*/
+@media (min-width: 768px) {
+    .menu-widget .navbar-nav > li > a {
+        color: #333333;
+    }
+}
+
+/* Картинка-фон турнирных таблиц на главной странице
+    Испания*/
+section .container .row .col-md-3:first-child .intro-table {
+    background-image: url("../img/table-1.jpg");
+}
+
+/*Англия*/
+section .container .row .col-md-3:nth-child(2n) .intro-table {
+    background-image: url("../img/england.jpg");
+}
+
+/*Германия*/
+section .container .row .col-md-3:nth-child(3) .intro-table {
+    background-image: url("../img/germany.jpg");
+}
+
+/*Отступ для названия команды в разделе статистики  и для позиционирования заголовка в team/team*/
+.team-title {
+    font-size: 20px;
+    line-height: 36px;
+    margin: 10px auto;
+    position: relative;
+    z-index: 2;
+}
+
+.team-content {
+    padding-top: 150px;
+}
+
+.btn-success {
+    color: black !important;
+}
+
+/*Изображение и названия стадиона в странице статистики команды team/team*/
+.decor-default {
+    background-color: #ffffff;
+}
+
+.contact .controls {
+    position: relative;
+}
+
+.contact .controls .cover {
+    display: block;
+    margin: 25px auto;
+    max-width: 100%;
+    min-height: 150px;
+}
+
+.cover {
+    position: relative;
+    overflow: hidden;
+}
+
+.contact .controls .cont {
+    position: absolute;
+    z-index: 2;
+    top: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.contact .controls .name {
+    font-size: 20px;
+    line-height: 36px;
+    color: #ffffff;
+    margin: 0 0 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.contact .controls .ui-mark {
+    display: inline-block;
+    border: 1px solid #ffffff;
+    font-size: 16px;
+    line-height: 32px;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 2px;
+    padding: 0 26px;
+    border-radius: 2px;
+    position: relative;
+    z-index: 2;
+    background-color: #b22c29;
+    opacity: 0.8;
+}
+
+/*раскрывающая панель с последними матчами команд в team/team*/
+.clickable {
+    cursor: pointer;
+}
+
+.clickable .glyphicon {
+    background: rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px
+}
+
+.panel-heading span {
+    margin-top: -23px;
+    font-size: 15px;
+    margin-right: -9px;
+}
+
+a.clickable {
+    color: inherit;
+}
+
+a.clickable:hover {
+    text-decoration: none;
+}
+
+/*Классы для раскрывающего поля "Последние матчи"*/
+.panel-home {
+    color: #a94442;
+    font-size: 16px;
+    margin-bottom: 7px;
+    margin-top: 5px;
+}
+
+/*Классы для ссылок в "Последние матчи"*/
+.panel-body a.show-match {
+    color: #337ab7;
+}
+
+.panel-body a.show-match:hover {
+    color: #f74646;
+}
+
+/*Опции Модального окна */
+#match .modal-dialog {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+/*кнопка модального окна */
+#match .btn {
+    color: #b22c29;
+}
+
+#match .btn:hover {
+    color: white;
+}
+
+/*Стили вывода матчей чемпионата, статистики команды и отдельного матча*/
+.score {
+    padding-top: 10px;
+}
+
+.team {
+    padding-bottom: 0;
+}
+
+.team-embl {
+    height: 55px;
+}
+
+.team-stat {
+    padding-bottom: 40px !important;
+}
+
+/*Экшен и вид таблицы - Бомбардиры и ассисенты*/
+#scorers .table-wrap {
+    padding-right: 5em;
+    width: 50%;
+    float: left;
+}
+
+#scorers .table {
+    border: 5px solid #b04d4d;
+}
+
+@-moz-document url-prefix() {
+    fieldset {
+        display: table-cell;
+    }
+}
+
+#scorers tr:nth-child(odd) {
+    background: WhiteSmoke;
+}
+
+#scorers thead tr {
+    background-color: #b04d4d !important;
+    color: WhiteSmoke;
+}
+
+#scorers tfoot tr {
+    background: SlateGray !important;
+    color: WhiteSmoke;
+}
+
+#scorers td, th {
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+    border: 0px !important;
+    vertical-align: middle !important;
+}
+
+#scorers tfoot td, tfoot th {
+    padding: 1em !important;
+}
+
+#scorers th {
+    font-family: 'Black Ops One', cursive;
+}
+
+#scorers tr {
+    font-family: 'Boogaloo', cursive;
+    font-size: 1.1em;
+
+}
+
+#scorers tr td:nth-child(2) {
+    text-align: center;
+}
+
+#scorers tr td:nth-child(3) {
+    text-align: center;
+    width: 30%;
+}
+
+#scorers tr td:nth-child(4) {
+    text-align: center;
+}
+
+#scorers tr th:nth-child(1) {
+    width: 55%;
+    padding-left: 1.5em !important;
+    text-align: left;
+}
+
+#scorers tr th:nth-child(2) {
+    width: 15%;
+    padding-left: 0em !important;
+}
+
+#scorers tr th:nth-child(3) {
+    text-align: right;
+    width: 15%;
+    padding-right: 1.5em !important;
+}
+
+#scorers tr th:nth-child(4) {
+    width: 15%;
+}
+
+/*Правила для таблицы(столбцов) таблицы ассистентов*/
+#scorers .assist tr th:nth-child(2) {
+    width: 25%;
+    padding-left: 0em !important;
+}
+
+#scorers .assist tr th:nth-child(3) {
+    width: 20%;
+    padding-left: 0em !important;
+}
+
+#scorers .circle {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.5em;
+    width: 45px !important;
+    height: 45px !important;
+    background: DimGray;
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 100%;
+}
+
+#scorers .first {
+    background: Coral;
+}
+
+#scorers .second {
+    background: Goldenrod;
+}
+
+#scorers .third {
+    background: Grey;
+}
+
+/*Правила css в team/team - статистика команды*/
+span,
+.team {
+    font-weight: bolder;
+    color: #337ab7;
+}
+
+.date {
+    color: #337ab7;
+}
+
+.score .text-center {
+    font-size: 24px;
+    color: #b22c29;
+}
+
+.numeral {
+    font-weight: 700;
+    color: #000;
+}
+
+.statistic {
+    font-weight: 700;
+    color: #000
+}
+
+hr.style1 {
+    border-top: 1px solid #8c8b8b;
+}
+
+hr.style3 {
+    border-top: 1px dashed #8c8b8b;
+}
+
+/*Горизонтальное меню для переключение и показа туров*/
+.menu-tour {
+    display: block;
+    margin: 0;
+}
+
+.menu-tour ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.menu-tour ul li {
+    display: inline-block;
+    position: relative;
+}
+
+.menu-tour a:before {
+    counter-increment: li;
+    top: 0;
+    color: white;
+    transition: all 0.4s ease-in-out;
+}
+
+.menu-tour a {
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Arial';
+    letter-spacing: 1px;
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: left;
+    padding: 15px 1px 15px 0;
+    margin-right: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-tour a:hover {
+    color: #b22c29;
+}
+
+.menu-tour a:hover:before {
+    color: #b22c29;
+}
+
+/* АДМИНКА */
+/*Легенда таблицы админки - управление играми*/
+.legend {
+    padding-left: 15px;
+    max-width: 1300px;
+}
+
+.legend-stat {
+    color: #b22c29;
+}
+
+.play-index .btn {
+    color: #b22c29 !important;
+}
+
+/*Цвет каретки в выпадающем списке чемпионата в админке*/
+.black .dropdown-toggle span {
+    color: black;
+}
+
+/*Стили создания нового матча в админке*/
+.form-control {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.form-group .btn-default {
+    color: #b22c29;
+}
+
+/* Стили для отступа в колонке "action-column" */
+.play-index .table-hover .action-column {
+    width: 20px;
+}
+
+/*Отступ дата в создании матча - Админка*/
+.play-create .play-form #w1-datetime {
+    padding-bottom: 12px;
+}
+
+/* Кнопка Update в админке */
+.form-group .btn-primary {
+    color: #b22c29;
+}
+
+/*Кнопка "Создать игру" в админке*/
+.play-index .btn-danger:hover {
+    color: white !important;
+}
+
+/*Кнопка войти в админке*/
+
+.form-group .btn {
+    color: #b22c29;
+}
+
+.form-group .btn:hover {
+    color: white;
+}
+
+/*Меню "Добавление команд" В Админке*/
+.team-form .btn-danger {
+    color: #b22c29;
+}
+
+.team-form .btn:hover {
+    color: white;
+}
+
+.team-create .btn-danger {
+    color: #b22c29;
+}
+
+.team-create .btn:hover {
+    color: white;
+}
+
+/*Страница списка всех команд В Админке*/
+.team-index .btn-danger {
+    color: #b22c29;
+}
+
+.team-index .btn:hover {
+    color: white;
+}
+
+/*Страница просмотра команды В Админке*/
+.team-view .btn-danger {
+    color: #b22c29;
+}
+
+.team-view .btn:hover {
+    color: white;
+}
+
+.play-view .btn {
+    color: #b22c29;
+}
+
+.play-view .btn:hover {
+    color: white;
+}
+
+/*Раздел в админке "Команды" - стили расположения в GridView*/
+.team-content .table tbody td {
+    text-align: center;
+}
+
+/*Ширина главного контейнера для инпутов для создания матча в админке*/
+.play-form {
+    width: 550px;
+    float: left;
+}
+
+/* Стили для главной страницы - Статистические факты*/
+/*Устанавливаем ширину блоков Статистических фактов в 100% для более аккуратного отображения*/
+#services .owl-stage .owl-item .col-md-6 {
+    width: 100%;
+}
+
+.owl-carousel .heading {
+    font-size: 20px;
+    text-align: center;
+}
+
+/* Курсор для просмотра виджета статистических фактов*/
+#services .owl-carousel .owl-stage-outer {
+    cursor: e-resize;
+}
+
+.owl-carousel .block-head {
+    height: 95px;
+    display: block;
+}
+
+.owl-carousel .description {
+    color: #ec2323;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.owl-carousel .description img {
+    margin: 0 auto;
+    max-width: 30%;
+}
+
+footer .container .row .col-sm-8 p {
+    color: black;
+}
+
+.service {
+    margin: 5px 0;
+}
+
+.margin-champ {
+    margin: 35px 0;
+}
+
+/* Fade Slider CSS */
+.carousel .item {
+    -webkit-transition: 0.1s ease-in-out opacity;
+    -moz-transition: 0.1s ease-in-out opacity;
+    -o-transition: 0.1s ease-in-out opacity;
+    transition: 0.1s ease-in-out opacity;
+    left: 0 !important;
+}
+
+.carousel .next.left,
+.carousel .prev.right {
+    opacity: 1;
+    z-index: 1;
+}
+
+.carousel .active.left,
+.carousel .active.right {
+    opacity: 0;
+    z-index: 2;
+}
+
+.carousel .carousel-control {
+    z-index: 1000;
+    outline: none;
+}
+
+.carousel-control.right {
+    background-image: none;
+}
+
+.carousel-control.left {
+    background-image: none;
+}
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    margin-left: -75px;
+}
+
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+    margin-right: -75px;
+}
+
+.yamm {
+    margin-bottom: 45px;
+}
+
+.yamm .dropdown-menu {
+    left: auto;
+}
+
+.yamm .yamm-content {
+    padding: 20px 30px;
+}
+
+.yamm .dropdown.yamm-fw .dropdown-menu {
+    left: 0;
+    right: 0;
+}
+
+.nav::after, .navbar-header::after, .navbar-collapse::after {
+    clear: none;
+}
+
+/*Футер*/
+footer {
+    clear: both;
+    margin-top: 20px;
+}
+
+/*Стили отображения на главной странице последних матчей*/
+#last-games .nav-tabs {
+    border: none;
+}
+
+#last-games .tabs-krajee .nav-tabs > li > a {
+    padding: 10px 85px;
+    border: none;
+    color: #333;
+}
+
+#last-games .tabs-krajee .nav-tabs > li > a:hover {
+    color: #ec2323;
+    cursor: pointer;
+}
+
+#last-games .tab-content {
+    margin-bottom: 25px;
+}
+
+/*Стили таблиц чемпионата на главной странице*/
+.intro-table {
+    background-position: -35px 0;
+}
+
+.intro-tables table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #f3f3f3;
+    font-family: sans-serif;
+}
+
+.intro-tables .intro-table {
+    height: 325px;
+}
+
+.intro-tables .intro-table .heading {
+    padding: 1px;
+}
+
+.item thead {
+    bottom: 3px;
+}
+
+.owl-testimonials .owl-controls {
+    bottom: 10px;
+}
+
+th {
+    font-weight: bold;
+}
+
+.item td, th {
+    padding: 5px;
+    text-align: center;
+}
+
+.item td:first-child {
+    text-align: left;
+}

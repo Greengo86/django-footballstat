@@ -1,0 +1,133 @@
+{% extends "main.html" %}
+{% load tz %}
+
+{% block main_content %}
+
+<section id="tables">
+    <div class="container">
+        <div class="row intro-tables">
+            {% for league,table in tournament_table.items %}
+                <div class="col-md-3">
+                    <div class="intro-table">
+                        <h5 class="white heading text-center">{{ league }}</h5>
+                        <div class="owl-testimonials bottom">
+                            {% for item,stats in table.items %}
+                                <div class="item">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Игры</th>
+                                            <th>Очки</th>
+                                            <th colspan="2">РМ</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for team,table_stat in stats.items %}
+                                                <tr><td>{{ team }}</td><td>{{ table_stat.games }}</td><td>{{ table_stat.points }}</td><td>{{ table_stat.goals }}</td><td>{{ table_stat.missed_goals }}</td></tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section id="last-games">
+    <div class="row text-center title">
+        <h2 class="black">Последние матчи</h2>
+        <h4 class="light muted">Кликните по эмблеме для просмотра последних матчей</h4>
+    </div>
+    <div id="w0-container" class="tabs-x tabs-above tab-align-center tabs-krajee">
+        <ul class="nav nav-tabs hidden-print" data-krajee-tabsX="tabsX_00000000" role="tablist">
+            {% for id,league in league_data.items %}
+                <li><a href="{% url 'football:last_games' id %}" data-target="#data-games" class="media_node active span" id="contacts_tab" data-toggle="tabajax" rel="tooltip"> <h4 class="heading"> {{ league }} </h4></a></li>
+            {% endfor %}
+        </ul>
+        <div class="tab-content">
+           <div class="h4 visible-print-block"><img src="img/champ/1.png"><h4 class="heading">Испания</h4></div>
+           <div id="data-games" class="tab-pane fade"></div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="section section-padded">
+    <div class="container">
+        <div class="row text-center title">
+            <h2 class="black">Статистические факты</h2>
+            <h4 class="light muted">Самое интересное из Ведущих Европейских чемпионатов</h4>
+        </div>
+        {% for country, fact in stat_facts.items %}
+            <div class="row text-center title">
+                <h2 class="light muted margin-champ">{{ country }}</h2>
+            </div>
+            <div class="owl-carousel owl-theme">
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Самая забивающая команда</h4>
+                    </div>
+                        <p class="description img-responsive">{{ fact.goals.0}} - {{ fact.goals.1|floatformat:1 }}<?php echo $team_goal ?> <?php echo Html::img($team_embl_goal) ?>
+                            гола за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Самая пропускающая команда</h4>
+                    </div>
+                    <p class="description img-responsive">{{ fact.missed_goals.0 }} - {{ fact.missed_goals.1|floatformat:1}}<?php echo Html::img($team_embl_owngoal) ?>
+                        гола за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Больше всех подали угловых ударов</h4>
+                    </div>
+                    <p class="description img-responsive">{{ fact.corners.0 }} - {{ fact.corners.1|floatformat:1}}<?php echo Html::img($team_embl_corner) ?>
+                        угловых за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Больше всех фолили на сопернике</h4>
+                    </div>
+                    <p class="description img-responsive">{{fact.fouls.0}} - {{fact.fouls.1|floatformat:1}}<?php echo Html::img($team_embl_foul) ?>
+                        фола за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Больше всех владеют мячом</h4>
+                    </div>
+                    <p class="description">{{fact.possesion.0}} - {{fact.possesion.1|floatformat:1}}<?php echo Html::img($team_embl_posses) ?>
+                        % за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Чаще всех попадают в оффсайд</h4>
+                    </div>
+                    <p class="description">{{fact.offside.0}} - {{fact.offside.1|floatformat:1}}<?php echo Html::img($team_embl_offside) ?>
+                        оффсайда за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Чаще всех получают жёлтые карточки</h4>
+                    </div>
+                    <p class="description">{{fact.yellow_carts.0}} - {{fact.yellow_carts.1|floatformat:1}}<?php echo Html::img($team_embl_yelCart) ?>
+                        карточки за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Чаще всех получают красные карточки</h4>
+                    </div>
+                    <p class="description">{{fact.red_carts.0}} - {{fact.red_carts.1|floatformat:1}}<?php echo Html::img($team_embl_yelCart) ?>
+                        карточки за игру</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% endblock %}
+

@@ -1,0 +1,90 @@
+{% load static %}
+
+<div class="tab-content printable">
+    <div id="w0-tab0" class="tab-pane fade in active">
+         <div class="container">
+            {% with league_name=data_table.0.league.name %}
+                <div class="text-center"><h4 class="heading"><span class="team">{{ league_name }}</span></h4></div>
+            {% endwith %}
+            {% for play in data_table %}
+                <div class="col-md-12"><p class="text-center date">{{ play.date }}</p></div>
+                <!--Вывод ленты последних 20 матчей чемпионата-->
+                <div class="col-md-12"><p class="text-center text-info"></p>
+                </div>
+                <div class="col-md-5 team-embl">
+                    <p class="text-right">
+                        <span class="team">
+                            <img src="{% static play.home_team.emblem %}">
+                            {{ play.home_team.name }}
+                        </span>
+                    </p>
+                </div>
+                <div class="col-md-2 score">
+                    <p class="text-center">
+                        {{ play.home_score_full }}:{{ play.away_score_full }}
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <p class="text-left">
+                        <span class="team">
+                            <img src="{% static play.away_team.emblem %}">
+                            {{ play.away_team.name }}
+                        </span>
+                    </p>
+                </div>
+                <br class="">
+                <div class="col-md-12 text-center">
+                    <a class="show-match" href="" data-id=""><i class="glyphicon glyphicon-stats"></i>Статистика</a>
+                    <br>
+                    <hr class="style1">
+                </div>
+            {% endfor %}
+         </div>
+    </div>
+</div>
+
+{#{% endblock %}#}
+
+{#section id="last-games">#}
+{#    <div class="row text-center title">#}
+{#        <h2 class="black">Последние матчи</h2>#}
+{#        <h4 class="light muted">Кликните по эмблеме для просмотра последних матчей</h4>#}
+{#    </div>#}
+{#    <div id="w0-container" class="tabs-x  tabs-above tab-align-center tabs-krajee">#}
+{#        <ul id="w0" class="nav nav-tabs hidden-print" data-krajee-tabsX="tabsX_00000000" role="tablist">#}
+{#            {% for id,league in league_data.items %}#}
+{#                <li><a href="#w0-tab0" data-url="{% url 'football:last_games' id %}" data-toggle="tab" role="tab" aria-selected="false" aria-controls="w0-tab0"><img src="img/champ/1.png"><h4 class="heading">{{ league }}</h4> </a></li>#}
+{#            {% endfor %}#}
+{#            <div class="tab-content printable">#}
+{#            <div class="h4 visible-print-block"><img src="img/champ/1.png"><h4 class="heading">  Лига  </h4></div>#}
+{#                <div id="w0-tab0" class="tab-pane fade in active">#}
+{#                    <div class="container">#}
+{#                        <h1><p class="text-center text-info"></p></h1>#}
+{##}
+{#                        <!--Вывод ленты последних 20 матчей чемпионата-->#}
+{#                        <div class="col-md-12"><p class="text-center text-info"></p>#}
+{#                        </div>#}
+{#                        <div class="col-md-5 team-embl">#}
+{#                            <p class="text-right"><span class="team"></span></p>#}
+{#                        </div>#}
+{#                        <div class="col-md-2 score">#}
+{#                            <p class="text-center">#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="col-md-5">#}
+{#                            <p class="text-left"><span class="team"></span>#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <br class="">#}
+{#                        <div class="col-md-12 text-center">#}
+{#                            <a class="show-match" href="" data-id=""><i class="glyphicon glyphicon-stats"></i>Ебанистика</a>#}
+{#                            <br>#}
+{#                            <hr class="style1">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </ul>#}
+{#    </div>#}
+{#</section>#}
+
