@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.validators import URLValidator
 from django.db import models
 
@@ -95,7 +97,7 @@ class Play(models.Model):
         verbose_name_plural = 'Игры'
 
     def __str__(self):
-        return self.team_home + self.team_away + self.date
+        return self.team_home.name + self.team_away.name + datetime.strftime(self.date, '%d %m %Y %H:%M')
 
 
 class Team(models.Model):

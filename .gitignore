@@ -1,8 +1,8 @@
 venv/
-venvve/
 .idea
 dump17_12_without_footstat.sql
 foot_yii2.sql
 foot_yii2_without_year.sql
 football_team_202105070033_dump_team_with_new_inter.sql
 Old_db_with_old_plays_19_04_21.sql
+/virtualenv_name/

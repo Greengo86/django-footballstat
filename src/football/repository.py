@@ -1,20 +1,12 @@
+from django.db.models import QuerySet
+
 from football import helpers
-from football.models import Play, Team
+from football.models import Play
 
 
-def get_current_seasson_plays_by_league(league_id, date=helpers.get_date_start_season(), with_related=None):
-    _filter = {'league__id': league_id, 'date__gte': date, 'home_team__active': True, 'away_team__active': True}
-    plays = Play.objects.filter(**_filter)
-    if with_related is not None:
-        plays.select_related(with_related)
-    return plays
-
-
-def get_teams(league_id, with_related=None):
-    _filter = {'active': True, 'league__id': league_id}
-    teams = Team.objects.filter(**_filter)
-    if with_related is not None:
-        teams.select_related(with_related)
-    return teams
+def get_current_season_plays() -> QuerySet:
+    date = helpers.get_date_start_season()
+    _filter = {'date__gte': date, 'team_home__active': True, 'team_away__active': True}
+    return Play.objects.select_related('team_home', 'team_away', 'league').filter(**_filter)
 
 

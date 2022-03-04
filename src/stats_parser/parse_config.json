@@ -1,12 +1,21 @@
 {
     "sources": {
-        "Испания": "https://www.championat.com/football/_spain/tournament/4019/calendar/",
-        "Италия": "https://www.championat.com/football/_italy/tournament/4021/calendar/",
-        "Германия": "https://www.championat.com/football/_germany/tournament/4017/calendar/",
-        "Англия": "https://www.championat.com/football/_england/tournament/4013/calendar/"
+        "last_plays": {
+            "Испания": "https://www.championat.com/football/_spain.html",
+            "Италия": "https://www.championat.com/football/_italy.html",
+            "Германия": "https://www.championat.com/football/_germany.html",
+            "Англия": "https://www.championat.com/football/_england.html"
+        },
+        "all_plays": {
+            "Испания": "https://www.championat.com/football/_spain/tournament/4541/calendar/",
+            "Италия": "https://www.championat.com/football/_italy/tournament/4501/calendar/",
+            "Германия": "https://www.championat.com/football/_germany/tournament/4493/calendar/",
+            "Англия": "https://www.championat.com/football/_england/tournament/4483/calendar/"
+        }
     },
     "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
+        "Connection": "close"
     },
     "url_champ_page": {
         "urls_page": {

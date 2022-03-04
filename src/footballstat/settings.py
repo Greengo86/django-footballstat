@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'football',
     'sitetree',
     'stats_parser'
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'footballstat.urls'
@@ -71,6 +73,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
             ],
+            'libraries': {
+                'template_tag': 'football.tags',
+            }
         },
     },
 ]
@@ -91,6 +96,9 @@ DATABASES = {
         'PASSWORD': 'MessI@12',
         'HOST': '127.0.0.1',
         'PORT': '3306',
+        'OPTIONS': {
+            "init_command": "SET GLOBAL max_connections = 100000",  # <-- The fix
+        }
     }
 }
 
@@ -122,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -140,13 +148,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
 # Custom Footballstat settings
 DATE_END_SEASON = '08-08'
-BASE_DOMEN = 'https://www.championat.com/'
+BASE_PARSING_DOMEN = 'https://www.championat.com/'
 
 SITE_ID = 1
 
-# CELERY STUFF
+# CELERY STUFF - using redis
 BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -158,3 +168,6 @@ CELERY_IMPORTS = (
     'stats_parser.tasks',
 )
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

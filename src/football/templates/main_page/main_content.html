@@ -1,5 +1,6 @@
 {% extends "main.html" %}
 {% load tz %}
+{% load template_tag %}
 
 {% block main_content %}
 
@@ -71,56 +72,98 @@
                     <div class="block-head">
                         <h4 class="heading">Самая забивающая команда</h4>
                     </div>
-                        <p class="description img-responsive">{{ fact.goals.0}} - {{ fact.goals.1|floatformat:1 }}<?php echo $team_goal ?> <?php echo Html::img($team_embl_goal) ?>
+                        <p class="description img-responsive">{{ fact.total_score.0}} <img src="{{ team_emblems|get_value:fact.total_score.0}}"/> {{ fact.total_score.1|floatformat:1 }}
+                            гола за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Самая забивающая команда дома</h4>
+                    </div>
+                        <p class="description img-responsive">{{ fact.score_home.0}} <img src="{{ team_emblems|get_value:fact.score_home.0}}"/> {{ fact.score_home.1|floatformat:1 }}
+                            гола за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Самая забивающая команда на выезде</h4>
+                    </div>
+                        <p class="description img-responsive">{{ fact.score_away.0}} <img src="{{ team_emblems|get_value:fact.score_away.0}}"/> {{ fact.score_away.1|floatformat:1 }}
                             гола за игру</p>
                 </div>
                 <div class="col-md-6">
                     <div class="block-head">
                         <h4 class="heading">Самая пропускающая команда</h4>
                     </div>
-                    <p class="description img-responsive">{{ fact.missed_goals.0 }} - {{ fact.missed_goals.1|floatformat:1}}<?php echo Html::img($team_embl_owngoal) ?>
+                    <p class="description img-responsive">{{ fact.missed_goals.0}} <img src="{{ team_emblems|get_value:fact.missed_goals.0}}"/> {{ fact.missed_goals.1|floatformat:1 }}
                         гола за игру</p>
                 </div>
                 <div class="col-md-6">
                     <div class="block-head">
                         <h4 class="heading">Больше всех подали угловых ударов</h4>
                     </div>
-                    <p class="description img-responsive">{{ fact.corners.0 }} - {{ fact.corners.1|floatformat:1}}<?php echo Html::img($team_embl_corner) ?>
+                    <p class="description img-responsive">{{ fact.corners.0}} <img src="{{ team_emblems|get_value:fact.corners.0}}"/> {{ fact.corners.1|floatformat:1 }}
                         угловых за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Больше всех ударили по воротам</h4>
+                    </div>
+                    <p class="description img-responsive">{{ fact.shot_on_goal.0}} <img src="{{ team_emblems|get_value:fact.shot_on_goal.0}}"/> {{ fact.shot_on_goal.1|floatformat:1 }}
+                        ударов за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Больше всех ударов в створ ворот</h4>
+                    </div>
+                    <p class="description img-responsive">{{ fact.shot_on_target.0}} <img src="{{ team_emblems|get_value:fact.shot_on_target.0}}"/> {{ fact.shot_on_target.1|floatformat:1 }}
+                        ударов за игру</p>
                 </div>
                 <div class="col-md-6">
                     <div class="block-head">
                         <h4 class="heading">Больше всех фолили на сопернике</h4>
                     </div>
-                    <p class="description img-responsive">{{fact.fouls.0}} - {{fact.fouls.1|floatformat:1}}<?php echo Html::img($team_embl_foul) ?>
+                    <p class="description img-responsive">{{ fact.fouls.0}} <img src="{{ team_emblems|get_value:fact.fouls.0}}"/> {{ fact.fouls.1|floatformat:1 }}
                         фола за игру</p>
                 </div>
                 <div class="col-md-6">
                     <div class="block-head">
                         <h4 class="heading">Больше всех владеют мячом</h4>
                     </div>
-                    <p class="description">{{fact.possesion.0}} - {{fact.possesion.1|floatformat:1}}<?php echo Html::img($team_embl_posses) ?>
+                    <p class="description">{{ fact.possession.0}} <img src="{{ team_emblems|get_value:fact.possession.0}}"/> {{ fact.possession.1|floatformat:1 }}
                         % за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Больше всех выполнили штрафных ударов</h4>
+                    </div>
+                    <p class="description">{{ fact.free_shots.0}} <img src="{{ team_emblems|get_value:fact.free_shots.0}}"/> {{ fact.free_shots.1|floatformat:1 }}
+                         за игру</p>
                 </div>
                 <div class="col-md-6">
                     <div class="block-head">
                         <h4 class="heading">Чаще всех попадают в оффсайд</h4>
                     </div>
-                    <p class="description">{{fact.offside.0}} - {{fact.offside.1|floatformat:1}}<?php echo Html::img($team_embl_offside) ?>
+                    <p class="description">{{ fact.offsides.0}} <img src="{{ team_emblems|get_value:fact.offsides.0}}"/> {{ fact.offsides.1|floatformat:1 }}
                         оффсайда за игру</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-head">
+                        <h4 class="heading">Больше всех блокированных ударов</h4>
+                    </div>
+                    <p class="description">{{ fact.blocked_shots.0}} <img src="{{ team_emblems|get_value:fact.blocked_shots.0}}"/> {{ fact.blocked_shots.1|floatformat:1 }}
+                        ударов за игру</p>
                 </div>
                 <div class="col-md-6">
                     <div class="block-head">
                         <h4 class="heading">Чаще всех получают жёлтые карточки</h4>
                     </div>
-                    <p class="description">{{fact.yellow_carts.0}} - {{fact.yellow_carts.1|floatformat:1}}<?php echo Html::img($team_embl_yelCart) ?>
+                    <p class="description">{{ fact.yellow_cards.0}} <img src="{{ team_emblems|get_value:fact.yellow_cards.0}}"/> {{ fact.yellow_cards.1|floatformat:1 }}
                         карточки за игру</p>
                 </div>
                 <div class="col-md-6">
                     <div class="block-head">
                         <h4 class="heading">Чаще всех получают красные карточки</h4>
                     </div>
-                    <p class="description">{{fact.red_carts.0}} - {{fact.red_carts.1|floatformat:1}}<?php echo Html::img($team_embl_yelCart) ?>
+                    <p class="description">{{ fact.red_cards.0}} <img src="{{ team_emblems|get_value:fact.red_cards.0}}"/> {{ fact.red_cards.1|floatformat:1 }}
                         карточки за игру</p>
                 </div>
             </div>

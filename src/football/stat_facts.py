@@ -1,75 +1,71 @@
-from football import repository
 from operator import itemgetter
 
-stats_dict = {
-    'goals': {},
-    'missed_goals': {},
-    'shot_on_goal': {},
-    'possesion': {},
-    'fouls': {},
-    'corners': {},
-    'offside': {},
-    'yellow_carts': {},
-    'red_carts': {},
-    'played_games': {},
+stat_fields = {
+    'Удары по воротам': 'shot_on_goal',
+    'Удары в створ': 'shot_on_target',
+    'Фолы': 'fouls',
+    'Угловые': "corners",
+    'Офсайды': 'offsides',
+    '% владения мячом': 'possession',
+    'Заблокированные удары': 'blocked_shots',
+    'Штрафные удары': 'free_shots',
+    'Предупреждения': 'yellow_cards',
+    'Удаления': 'red_cards',
 }
 
 
-def get_factory(league_id):
-    def get_stat_facts(plays):
-        {stats_dict[stat_element].update({team.name: 0}) for team in repository.get_teams(league_id) for
-         stat_element in stats_dict.keys()}
-        # for team in repository.get_teams(league_id):
-        #     for stat_element in self.stats_dict.keys():
-        #         self.stats_dict[stat_element].update({team.name: 0})
-        team_emblem = {}
+def get_factory():
+    def get_stat_facts(plays: list) -> dict:
+        result_dict, team_emblem = {}, {}
         for play in plays:
-            # todo переделать поля в базе на названия ниже и обрабатывать инфу в цикле будет удобнее!!!
-            # for stat_element in stats_dict.keys():
-            #     if stat_element == 'missed_goals':
-            #         stats_dict[stat_element][play.home_team.name] += int(play.away_score_full)
-            #         stats_dict[stat_element][play.away_team.name] += int(play.home_score_full)
-            #         continue
-            #     if stat_element == 'played_games':
-            #         stats_dict['played_games'][play.home_team.name] += 1
-            #         stats_dict['played_games'][play.away_team.name] += 1
-            #         continue
-            stats_dict['goals'][play.home_team.name] += int(play.home_score_full)
-            stats_dict['goals'][play.away_team.name] += int(play.away_score_full)
-            stats_dict['missed_goals'][play.home_team.name] += int(play.away_score_full)
-            stats_dict['missed_goals'][play.away_team.name] += int(play.home_score_full)
-            stats_dict['shot_on_goal'][play.home_team.name] += int(play.h_tid_shot_on_goal)
-            stats_dict['shot_on_goal'][play.away_team.name] += int(play.a_tid_shot_on_goal)
-            stats_dict['possesion'][play.home_team.name] += int(play.h_tid_possesion)
-            stats_dict['possesion'][play.away_team.name] += int(play.a_tid_possesion)
-            stats_dict['fouls'][play.home_team.name] += int(play.h_tid_foul)
-            stats_dict['fouls'][play.away_team.name] += int(play.a_tid_foul)
-            stats_dict['corners'][play.home_team.name] += int(play.h_tid_corner)
-            stats_dict['corners'][play.away_team.name] += int(play.a_tid_corner)
-            stats_dict['offside'][play.home_team.name] += int(play.h_tid_offside)
-            stats_dict['offside'][play.away_team.name] += int(play.a_tid_offside)
-            stats_dict['yellow_carts'][play.home_team.name] += int(play.h_tid_yellow_cart)
-            stats_dict['yellow_carts'][play.away_team.name] += int(play.a_tid_yellow_cart)
-            stats_dict['red_carts'][play.home_team.name] += int(play.h_tid_red_cart)
-            stats_dict['red_carts'][play.away_team.name] += int(play.a_tid_red_cart)
-            stats_dict['played_games'][play.home_team.name] += 1
-            stats_dict['played_games'][play.away_team.name] += 1
-            if play.home_team.name not in team_emblem:
-                team_emblem.update({play.home_team.name: play.home_team.emblem})
-            if play.away_team.name not in team_emblem:
-                team_emblem.update({play.away_team.name: play.away_team.emblem})
-        average_stats_dict = get_average_stats_dict()
+            main_stat = ['total_score', 'score_home', 'score_away', 'missed_goals', 'played_games']
+            stats_list = list(stat_fields.values())
+            stats_list.extend(main_stat)
+            for stat_element in stats_list:
+                if stat_element not in result_dict:
+                    result_dict[stat_element] = {}
+                    result_dict[stat_element].update({play.team_home.name: 0})
+                    result_dict[stat_element].update({play.team_away.name: 0})
+                if play.team_home.name not in result_dict[stat_element]:
+                    result_dict[stat_element].update({play.team_home.name: 0})
+                if play.team_away.name not in result_dict[stat_element]:
+                    result_dict[stat_element].update({play.team_away.name: 0})
+
+                if stat_element in main_stat:
+                    if stat_element == 'played_games':
+                        result_dict['played_games'][play.team_home.name] += 1
+                        result_dict['played_games'][play.team_away.name] += 1
+                    if stat_element == 'score_home':
+                        result_dict['score_home'][play.team_home.name] += int(getattr(play, 'score_home', 0))
+                        result_dict['total_score'][play.team_home.name] += int(getattr(play, 'score_home', 0))
+                    if stat_element == 'score_away':
+                        result_dict['score_away'][play.team_away.name] += int(getattr(play, 'score_away', 0))
+                        result_dict['total_score'][play.team_away.name] += int(getattr(play, 'score_away', 0))
+                    if stat_element == 'missed_goals':
+                        result_dict['missed_goals'][play.team_home.name] += int(getattr(play, 'score_away', 0))
+                        result_dict['missed_goals'][play.team_away.name] += int(getattr(play, 'score_home', 0))
+                else:
+                    result_dict[stat_element][play.team_home.name] += int(getattr(play, 'home_' + stat_element, 0))
+                    result_dict[stat_element][play.team_away.name] += int(getattr(play, 'away_' + stat_element, 0))
+
+            # Пока не нужны эмблемы - генерю их на уровень выше!
+            # if play.team_home.name not in team_emblem:
+            #     team_emblem.update({play.team_home.name: play.team_home.emblem})
+            # if play.team_away.name not in team_emblem:
+            #     team_emblem.update({play.team_away.name: play.team_away.emblem})
+
+        average_stat_fields = get_average_stat_fields(result_dict)
         stats_facts = {}
-        for stat_element in filter(lambda n: n != 'played_games', average_stats_dict.keys()):
-            stats_facts.update({stat_element: max(average_stats_dict[stat_element].items(), key=itemgetter(1))})
+        for stat_element in filter(lambda n: n != 'played_games', average_stat_fields.keys()):
+            stats_facts.update({stat_element: max(average_stat_fields[stat_element].items(), key=itemgetter(1))})
         return stats_facts
 
     return get_stat_facts
 
 
-def get_average_stats_dict():
-    for stat_element, data in stats_dict.items():
+def get_average_stat_fields(result_dict: dict) -> dict:
+    for stat_element, data in result_dict.items():
         if stat_element != 'played_games':
             for team, score in data.items():
-                stats_dict[stat_element][team] = score / stats_dict['played_games'][team]
-    return stats_dict
+                result_dict[stat_element][team] = score / result_dict['played_games'][team]
+    return result_dict

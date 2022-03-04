@@ -11,9 +11,27 @@ app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 
 app.conf.beat_schedule = {
-    'send-print-every-single-minute': {
-        'task': 'stats_parser.tasks.send_print',
-        'schedule': crontab(),  # change to `crontab(minute=0, hour=0)` if you want it to run daily at midnight
-        'args': (['F'])
+    'test': {
+        'task': 'stats_parser.tasks.go_parse',
+        'schedule': crontab(minute='*/1'),  # change to `crontab(minute=0, hour=0)` if you want it to run daily at midnight
+        'args': (['last_plays'])
+    },
+    'parse-team-before-season': {
+        'task': 'stats_parser.tasks.go_parse',
+        'schedule': crontab(minute=0, hour='*/6', day_of_month='30', month_of_year='7'),
+        # Execute hour divisible by 6 and Execute on the 30 of July every year
+        'args': (['teams'])
+    },
+    'parse-last-plays': {
+        'task': 'stats_parser.tasks.go_parse',
+        'schedule': crontab(minute='*/10', hour='18,19,20,21,22,23,0,1', day_of_week='fri,sat,sun,mon'),
+        # Execute every 10 minutes on 18, 19, 20, 21, 22, 23, 0, 1 hours!
+        'args': (['last_plays'])
+    },
+    'parse-all-plays-is-one-time': {
+        'task': 'stats_parser.tasks.go_parse',
+        'schedule': crontab(minute=0, hour=0, day_of_month='30', month_of_year='7'),
+        # Первичная инициализация базы - парсинг игр начиная с 14 года по текущий момент. Наверное, запущу 1 раз руками
+        'args': (['all_plays'])
     },
 }

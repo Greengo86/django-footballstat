@@ -1,11 +1,8 @@
-import logging
-import time
+from . import parser
 from stats_parser.celery_tasks import app
 
 
 @app.task
-def send_print(arg):
-    logging.warning("Send Down")
-    print(arg)
-    with open('helloworld.txt', 'a+') as filehandle:
-        filehandle.write('\n' + 'Hello, world!' + time.strftime("%c", time.localtime()) + '\n')
+def go_parse(arg: str):
+    parser.main(arg)
+    return True
