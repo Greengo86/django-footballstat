@@ -22,7 +22,7 @@ from football.stat_facts import stat_fields
 
 async def async_prepare_soup(source: str) -> tuple[BeautifulSoup, Any]:
     json_provider = JSONProvider()
-    # Заюзаем цикл True так как падает с - aiohttp.client_exceptions.ServerDisconnectedError: Server disconnected
+    # Заюзаем цикл while True так как падает с - aiohttp.client_exceptions.ServerDisconnectedError: Server disconnected
     while True:
         try:
             async with aiohttp.ClientSession(
@@ -181,8 +181,7 @@ class StatExtractor(FootballParser):
                 element=self.class_config['score_dom']['tag'],
                 dom_params=self.class_config['score_dom']['class'])
 
-            # почему-то strip в аргументе get_text() не хватает.Чтобы было только число в конце еще раз обрабатываю strip()
-            result_dict['score_home'], result_dict['score_away'] = score_div.get_text(strip=True).split(':')[0].strip(), \
+            result_dict['score_home'], result_dict['score_away'] = score_div.get_text(strip=True).split(':')[0].strip(),\
                                                                    score_div.get_text(strip=True).split(':')[1].strip()
 
             div = self.custom_find_elements(
