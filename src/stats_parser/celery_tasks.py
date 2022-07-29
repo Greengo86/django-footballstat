@@ -3,7 +3,7 @@ from celery import Celery
 from django.conf import settings
 from celery.schedules import crontab
 
-# установить модуль настроек Django по умолчанию для программы «сельдерей».
+# установить модуль настроек Django по умолчанию для программ celery
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'footballstat.settings')
 app = Celery('stats_parser')
 app.config_from_object('django.conf:settings')
